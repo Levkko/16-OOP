@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piano</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="./scripts/preloader.js" defer></script>
+    <script src="./scripts/mark.js" defer></script>
+    <script src="./scripts/fade-out.js" defer></script>
+    <script src="./scripts/mouse.js" defer></script>
+    <script src="./scripts/hideletters.js" defer></script>
+    <script src="./scripts/volume.js" defer></script>
+    <script src="./scripts/theme.js" defer></script>
+    <script src="./scripts/melody-player.js" defer></script>
+  </head>
+  <body>
+    <div class="controls3">
+      <button id="Play" class="gimn-button">Зіграти пісню</button>
+    </div>
+
+    <div class="controls2">
+      <button id="toggleMark" class="mark-button">Відмітити</button>
+      <button id="playButton" class="play-button">Грати</button>
+      <button id="clearButton" class="clear-button">Очистити</button>
+    </div>
+
+    <div class="controls">
+      <button id="toggleSymbols" class="hide-button">Сховати символи</button>
+      <div class="volume-control">
+        <label for="volume">Гучність:</label>
+        <input
+          type="range"
+          id="volume"
+          class="volume-slider"
+          min="0"
+          max="100"
+          value="90"
+        />
+        <span id="volumeValue" class="volume-value">90%</span>
+      </div>
+      <div class="sound-selector">
+        <select id="instrument" name="instrument">
+          <option value="piano">Grand Piano</option>
+          <option value="celesta">Celesta</option>
+        </select>
+      </div>
+      <div class="theme-toggle-container">
+        <button id="themeToggle" class="theme-toggle">Тема</button>
+      </div>
+    </div>
+
+    <div class="piano" id="piano">
+      <!-- Клавіші C4 октави -->
+      <div class="key white-key" data-note="C4" data-code="KeyZ" data-key="Z">
+        <span class="note-name">C4</span>
+        <span class="key-label">Z</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 28px"
+        data-note="C%234"
+        data-code="KeyS"
+      >
+        <span class="note-name">C#4</span>
+        <span class="key-label">S</span>
+      </div>
+      <div class="key white-key" data-note="D4" data-code="KeyX" data-key="X">
+        <span class="note-name">D4</span>
+        <span class="key-label">X</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 68px"
+        data-note="D%234"
+        data-code="KeyD"
+      >
+        <span class="note-name">D#4</span>
+        <span class="key-label">D</span>
+      </div>
+      <div class="key white-key" data-note="E4" data-code="KeyC" data-key="C">
+        <span class="note-name">E4</span>
+        <span class="key-label">C</span>
+      </div>
+      <div class="key white-key" data-note="F4" data-code="KeyV" data-key="V">
+        <span class="note-name">F4</span>
+        <span class="key-label">V</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 148px"
+        data-note="F%234"
+        data-code="KeyG"
+      >
+        <span class="note-name">F#4</span>
+        <span class="key-label">G</span>
+      </div>
+      <div class="key white-key" data-note="G4" data-code="KeyB" data-key="B">
+        <span class="note-name">G4</span>
+        <span class="key-label">B</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 188px"
+        data-note="G%234"
+        data-code="KeyH"
+      >
+        <span class="note-name">G#4</span>
+        <span class="key-label">H</span>
+      </div>
+      <div class="key white-key" data-note="A4" data-code="KeyN" data-key="N">
+        <span class="note-name">A4</span>
+        <span class="key-label">N</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 228px"
+        data-note="A%234"
+        data-code="KeyJ"
+      >
+        <span class="note-name">A#4</span>
+        <span class="key-label">J</span>
+      </div>
+      <div class="key white-key" data-note="B4" data-code="KeyM">
+        <span class="note-name">B4</span>
+        <span class="key-label">M</span>
+      </div>
+
+      <!-- Клавіші C5 октави -->
+      <div
+        class="key white-key"
+        data-note="C5"
+        data-code="KeyQ"
+        alternative-data-code="Comma"
+      >
+        <span class="note-name">C5</span>
+        <span class="key-label">Q</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 308px"
+        data-note="C%235"
+        data-code="Digit2"
+        alternative-data-code="KeyL"
+      >
+        <span class="note-name">C#5</span>
+        <span class="key-label">2</span>
+      </div>
+      <div
+        class="key white-key"
+        data-note="D5"
+        data-code="KeyW"
+        alternative-data-code="Period"
+      >
+        <span class="note-name">D5</span>
+        <span class="key-label">W</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 348px"
+        data-note="D%235"
+        data-code="Digit3"
+        alternative-data-code="Semicolon"
+      >
+        <span class="note-name">D#5</span>
+        <span class="key-label">3</span>
+      </div>
+      <div
+        class="key white-key"
+        data-note="E5"
+        data-code="KeyE"
+        alternative-data-code="Slash"
+      >
+        <span class="note-name">E5</span>
+        <span class="key-label">E</span>
+      </div>
+      <div class="key white-key" data-note="F5" data-code="KeyR">
+        <span class="note-name">F5</span>
+        <span class="key-label">R</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 428px"
+        data-note="F%235"
+        data-code="Digit5"
+      >
+        <span class="note-name">F#5</span>
+        <span class="key-label">5</span>
+      </div>
+      <div class="key white-key" data-note="G5" data-code="KeyT">
+        <span class="note-name">G5</span>
+        <span class="key-label">T</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 468px"
+        data-note="G%235"
+        data-code="Digit6"
+      >
+        <span class="note-name">G#5</span>
+        <span class="key-label">6</span>
+      </div>
+      <div class="key white-key" data-note="A5" data-code="KeyY">
+        <span class="note-name">A5</span>
+        <span class="key-label">Y</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 508px"
+        data-note="A%235"
+        data-code="Digit7"
+      >
+        <span class="note-name">A#5</span>
+        <span class="key-label">7</span>
+      </div>
+      <div class="key white-key" data-note="B5" data-code="KeyU">
+        <span class="note-name">B5</span>
+        <span class="key-label">U</span>
+      </div>
+
+      <!-- Клавіші C6 октави до G6 -->
+      <div class="key white-key" data-note="C6" data-code="KeyI">
+        <span class="note-name">C6</span>
+        <span class="key-label">I</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 588px"
+        data-note="C%236"
+        data-code="Digit9"
+      >
+        <span class="note-name">C#6</span>
+        <span class="key-label">9</span>
+      </div>
+      <div class="key white-key" data-note="D6" data-code="KeyO">
+        <span class="note-name">D6</span>
+        <span class="key-label">O</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 628px"
+        data-note="D%236"
+        data-code="Digit0"
+      >
+        <span class="note-name">D#6</span>
+        <span class="key-label">0</span>
+      </div>
+      <div class="key white-key" data-note="E6" data-code="KeyP">
+        <span class="note-name">E6</span>
+        <span class="key-label">P</span>
+      </div>
+      <div class="key white-key" data-note="F6" data-code="BracketLeft">
+        <span class="note-name">F6</span>
+        <span class="key-label">[</span>
+      </div>
+      <div
+        class="key black-key"
+        style="left: 708px"
+        data-note="F%236"
+        data-code="Equal"
+      >
+        <span class="note-name">F#6</span>
+        <span class="key-label">=</span>
+      </div>
+      <div class="key white-key" data-note="G6" data-code="BracketRight">
+        <span class="note-name">G6</span>
+        <span class="key-label">]</span>
+      </div>
+    </div>
+    <script>
+      if (window.innerWidth < 768) {
+        document.body.innerHTML = "<h2 style='text-align:center; margin-top:0px; margin-left:20px; margin-right:20px;'>З телефону не можна, заходь з комп'ютера 😅</h2>";
+      }
+    </script>
+  </body>
+</html>
