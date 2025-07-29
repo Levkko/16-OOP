@@ -1,29 +1,12 @@
-function playNote(note, time) {
+import { playNote } from "./mouse.js";
+
+function playNoteWithDelay(note, time) {
   setTimeout(() => {
     const element = document.querySelector(`[data-note="${note}"]`);
     element.classList.add("active");
 
-    var instrumentSelector = document.getElementById("instrument");
-    var selectedInstrument = instrumentSelector.value;
+    playNote(note); // модуль
 
-    let noteSoundChosen;
-    if (selectedInstrument === "piano") {
-      noteSoundChosen = `./notes-piano/${note}.wav`;
-    }
-    if (selectedInstrument === "celesta") {
-      noteSoundChosen = `./notes celesta/${note}.wav`;
-    }
-
-    noteSound = new Audio(noteSoundChosen);
-    if (selectedInstrument === "piano") {
-      noteSound.volume = volumeSlider.value / 100;
-    }
-    if (selectedInstrument === "celesta") {
-      noteSound.volume = volumeSlider.value / 100;
-    }
-
-    noteSound.play();
-    
     setTimeout(() => {
       element.classList.remove("active");
     }, 300);
@@ -139,9 +122,8 @@ function playNotes() {
     { note: "E5", time: 17700 },
   ];
 
-  melody.forEach(({ note, time }) => playNote(note, time));
+  
+  melody.forEach(({ note, time }) => playNoteWithDelay(note, time));
 }
 
 document.getElementById("Play").addEventListener("click", playNotes);
-
-//так довго це писав 😮‍💨
