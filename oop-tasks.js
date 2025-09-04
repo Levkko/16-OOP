@@ -108,12 +108,12 @@ class User {
 }
 
 class Admin extends User {
-  constructor() {
-    super();
+  constructor(email) {
+    super("Admin", email);
   }
 
-  getInfo(email) {
-    return "Admin. Email: \"" + email + "\"";
+  getInfo() {
+    return "Admin. Email: \"" + this.email + "\"";
   }
 }
 
